@@ -1,0 +1,56 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "characters",
+      "rootUri": "file:///F:/sdk/flutter_windows_2.0.1-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/characters-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "collection",
+      "rootUri": "file:///F:/sdk/flutter_windows_2.0.1-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/collection-1.15.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter",
+      "rootUri": "file:///F:/sdk/flutter_windows_2.0.1-stable/flutter/packages/flutter",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "meta",
+      "rootUri": "file:///F:/sdk/flutter_windows_2.0.1-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/meta-1.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "sky_engine",
+      "rootUri": "file:///F:/sdk/flutter_windows_2.0.1-stable/flutter/bin/cache/pkg/sky_engine",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "typed_data",
+      "rootUri": "file:///F:/sdk/flutter_windows_2.0.1-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/typed_data-1.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "vector_math",
+      "rootUri": "file:///F:/sdk/flutter_windows_2.0.1-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/vector_math-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "extended_nested_scroll_view",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    }
+  ],
+  "generated": "2021-04-13T08:48:35.545261Z",
+  "generator": "pub",
+  "generatorVersion": "2.12.0"
+}
