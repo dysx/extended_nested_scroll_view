@@ -11,28 +11,28 @@ import 'package:flutter/widgets.dart';
 // Examples can assume:
 // List<String> _tabs;
 
-/// Signature used by [NestedScrollView] for building its header.
+/// Signature used by [MyNestedScrollView] for building its header.
 ///
 /// The `innerBoxIsScrolled` argument is typically used to control the
 /// [SliverAppBar.forceElevated] property to ensure that the app bar shows a
 /// shadow, since it would otherwise not necessarily be aware that it had
 /// content ostensibly below it.
-typedef NestedScrollViewHeaderSliversBuilder = List<Widget> Function(
+typedef MyNestedScrollViewHeaderSliversBuilder = List<Widget> Function(
     BuildContext context, bool? innerBoxIsScrolled);
 
 //it include statusBarHeight ,pinned appbar height ,pinned SliverPersistentHeader height
-//which are in NestedScrollViewHeaderSlivers
-typedef NestedScrollViewPinnedHeaderSliverHeightBuilder = double Function();
+//which are in MyNestedScrollViewHeaderSlivers
+typedef MyNestedScrollViewPinnedHeaderSliverHeightBuilder = double Function();
 
 //it used to get the inner scrollable widget key, to avoid sync the scroll state for
-//Inner ScrollPositions (scrollables in NestedScrollView body)
+//Inner ScrollPositions (scrollables in MyNestedScrollView body)
 //we only need to scroll the active scrollable(which is in current view)
 //exmaple:  body is tabview and child are used with AutomaticKeepAliveClientMixin or PageStorageKey
 //T is the widget which the key store
 //Key is current active scrollable
 //exmaple: if tabbar index==0, then the active scrollable should be the first child
 // if tabbar index ==1,hen the active scrollable should be the second child
-typedef NestedScrollViewInnerScrollPositionKeyBuilder = Key Function();
+typedef MyNestedScrollViewInnerScrollPositionKeyBuilder = Key Function();
 
 /// A scrolling view inside of which can be nested other scrolling views, with
 /// their scroll positions being intrinsically linked.
@@ -53,14 +53,14 @@ typedef NestedScrollViewInnerScrollPositionKeyBuilder = Key Function();
 /// the top would not cause a collapsed [SliverAppBar] in the outer [ScrollView]
 /// to expand.
 ///
-/// [NestedScrollView] solves this problem by providing custom
+/// [MyNestedScrollView] solves this problem by providing custom
 /// [ScrollController]s for the outer [ScrollView] and the inner [ScrollView]s
 /// (those inside the [TabBarView], hooking them together so that they appear,
 /// to the user, as one coherent scroll view.
 ///
 /// ## Sample code
 ///
-/// This example shows a [NestedScrollView] whose header is the combination of a
+/// This example shows a [MyNestedScrollView] whose header is the combination of a
 /// [TabBar] in a [SliverAppBar] and whose body is a [TabBarView]. It uses a
 /// [SliverOverlapAbsorber]/[SliverOverlapInjector] pair to make the inner lists
 /// align correctly, and it uses [SafeArea] to avoid any horizontal disturbances
@@ -75,7 +75,7 @@ typedef NestedScrollViewInnerScrollPositionKeyBuilder = Key Function();
 /// ```dart
 /// DefaultTabController(
 ///   length: _tabs.length, // This is the number of tabs.
-///   child: NestedScrollView(
+///   child: MyNestedScrollView(
 ///     headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
 ///       // These are the slivers that show up in the "outer" scroll view.
 ///       return <Widget>[
@@ -87,7 +87,7 @@ typedef NestedScrollViewInnerScrollPositionKeyBuilder = Key Function();
 ///           // scroll view thinks it has not been scrolled.
 ///           // This is not necessary if the "headerSliverBuilder" only builds
 ///           // widgets that do not overlap the next sliver.
-///           handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+///           handle: MyNestedScrollView.sliverOverlapAbsorberHandleFor(context),
 ///           sliver: SliverAppBar(
 ///             title: const Text('Books'), // This is the title in the app bar.
 ///             pinned: true,
@@ -117,16 +117,16 @@ typedef NestedScrollViewInnerScrollPositionKeyBuilder = Key Function();
 ///           bottom: false,
 ///           child: Builder(
 ///             // This Builder is needed to provide a BuildContext that is
-///             // "inside" the NestedScrollView, so that
+///             // "inside" the MyNestedScrollView, so that
 ///             // sliverOverlapAbsorberHandleFor() can find the
-///             // NestedScrollView.
+///             // MyNestedScrollView.
 ///             builder: (BuildContext context) {
 ///               return CustomScrollView(
 ///                 // The "controller" and "primary" members should be left
-///                 // unset, so that the NestedScrollView can control this
+///                 // unset, so that the MyNestedScrollView can control this
 ///                 // inner scroll view.
 ///                 // If the "controller" property is set, then this scroll
-///                 // view will not be associated with the NestedScrollView.
+///                 // view will not be associated with the MyNestedScrollView.
 ///                 // The PageStorageKey should be unique to this ScrollView;
 ///                 // it allows the list to remember its scroll position when
 ///                 // the tab view is not on the screen.
@@ -135,7 +135,7 @@ typedef NestedScrollViewInnerScrollPositionKeyBuilder = Key Function();
 ///                   SliverOverlapInjector(
 ///                     // This is the flip side of the SliverOverlapAbsorber
 ///                     // above.
-///                     handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+///                     handle: MyNestedScrollView.sliverOverlapAbsorberHandleFor(context),
 ///                   ),
 ///                   SliverPadding(
 ///                     padding: const EdgeInsets.all(8.0),
@@ -174,12 +174,12 @@ typedef NestedScrollViewInnerScrollPositionKeyBuilder = Key Function();
 ///   ),
 /// )
 /// ```
-class NestedScrollView extends StatefulWidget {
+class MyNestedScrollView extends StatefulWidget {
   /// Creates a nested scroll view.
   ///
   /// The [reverse], [headerSliverBuilder], and [body] arguments must not be
   /// null.
-  const NestedScrollView({
+  const MyNestedScrollView({
     Key? key,
     this.controller,
     this.scrollDirection = Axis.vertical,
@@ -246,32 +246,32 @@ class NestedScrollView extends StatefulWidget {
   /// given by [body]).
   ///
   /// Typically this is used to create a [SliverAppBar] with a [TabBar].
-  final NestedScrollViewHeaderSliversBuilder headerSliverBuilder;
+  final MyNestedScrollViewHeaderSliversBuilder headerSliverBuilder;
 
-  //get the pinned header in NestedScrollView header.
-  final NestedScrollViewPinnedHeaderSliverHeightBuilder?
+  //get the pinned header in MyNestedScrollView header.
+  final MyNestedScrollViewPinnedHeaderSliverHeightBuilder?
       pinnedHeaderSliverHeightBuilder;
 
   //get the current active key.
-  final NestedScrollViewInnerScrollPositionKeyBuilder?
+  final MyNestedScrollViewInnerScrollPositionKeyBuilder?
       innerScrollPositionKeyBuilder;
 
-  /// The widget to show inside the [NestedScrollView].
+  /// The widget to show inside the [MyNestedScrollView].
   ///
   /// Typically this will be [TabBarView].
   ///
   /// The [body] is built in a context that provides a [PrimaryScrollController]
-  /// that interacts with the [NestedScrollView]'s scroll controller. Any
+  /// that interacts with the [MyNestedScrollView]'s scroll controller. Any
   /// [ListView] or other [Scrollable]-based widget inside the [body] that is
-  /// intended to scroll with the [NestedScrollView] should therefore not be
+  /// intended to scroll with the [MyNestedScrollView] should therefore not be
   /// given an explicit [ScrollController], instead allowing it to default to
-  /// the [PrimaryScrollController] provided by the [NestedScrollView].
+  /// the [PrimaryScrollController] provided by the [MyNestedScrollView].
   final Widget body;
 
   /// {@macro flutter.widgets.scrollable.dragStartBehavior}
   final DragStartBehavior dragStartBehavior;
 
-  /// Whether or not the [NestedScrollView]'s coordinator should prioritize the
+  /// Whether or not the [MyNestedScrollView]'s coordinator should prioritize the
   /// outer scrollable over the inner when scrolling back.
   ///
   /// This is useful for an outer scrollable containing a [SliverAppBar] that
@@ -287,19 +287,19 @@ class NestedScrollView extends StatefulWidget {
   final String? restorationId;
 
   /// Returns the [SliverOverlapAbsorberHandle] of the nearest ancestor
-  /// [NestedScrollView].
+  /// [MyNestedScrollView].
   ///
   /// This is necessary to configure the [SliverOverlapAbsorber] and
   /// [SliverOverlapInjector] widgets.
   ///
-  /// For sample code showing how to use this method, see the [NestedScrollView]
+  /// For sample code showing how to use this method, see the [MyNestedScrollView]
   /// documentation.
   static SliverOverlapAbsorberHandle? sliverOverlapAbsorberHandleFor(
       BuildContext context) {
-    final _InheritedNestedScrollView? target = context
-        .dependOnInheritedWidgetOfExactType<_InheritedNestedScrollView>()!;
+    final _InheritedMyNestedScrollView? target = context
+        .dependOnInheritedWidgetOfExactType<_InheritedMyNestedScrollView>()!;
     assert(target != null,
-        'NestedScrollView.sliverOverlapAbsorberHandleFor must be called with a context that contains a NestedScrollView.');
+        'MyNestedScrollView.sliverOverlapAbsorberHandleFor must be called with a context that contains a MyNestedScrollView.');
     return target!.state._absorberHandle;
   }
 
@@ -317,15 +317,15 @@ class NestedScrollView extends StatefulWidget {
   }
 
   @override
-  NestedScrollViewState createState() => NestedScrollViewState();
+  MyNestedScrollViewState createState() => MyNestedScrollViewState();
 }
 
-class NestedScrollViewState extends State<NestedScrollView> {
+class MyNestedScrollViewState extends State<MyNestedScrollView> {
   final SliverOverlapAbsorberHandle _absorberHandle =
       SliverOverlapAbsorberHandle();
 
   /// The [ScrollController] provided to the [ScrollView] in
-  /// [NestedScrollView.body].
+  /// [MyNestedScrollView.body].
   ///
   /// Manipulating the [ScrollPosition] of this controller pushes the outer
   /// header sliver(s) up and out of view. The position of the [outerController]
@@ -335,13 +335,13 @@ class NestedScrollViewState extends State<NestedScrollView> {
   /// See also:
   ///
   ///  * [outerController], which exposes the [ScrollController] used by the
-  ///    the sliver(s) contained in [NestedScrollView.headerSliverBuilder].
+  ///    the sliver(s) contained in [MyNestedScrollView.headerSliverBuilder].
   ScrollController? get innerController => _coordinator._innerController;
 
   /// The [ScrollController] provided to the [ScrollView] in
-  /// [NestedScrollView.headerSliverBuilder].
+  /// [MyNestedScrollView.headerSliverBuilder].
   ///
-  /// This is equivalent to [NestedScrollView.controller], if provided.
+  /// This is equivalent to [MyNestedScrollView.controller], if provided.
   ///
   /// Manipulating the [ScrollPosition] of this controller pushes the inner body
   /// sliver(s) down. The position of the [innerController] will be set to
@@ -352,7 +352,7 @@ class NestedScrollViewState extends State<NestedScrollView> {
   /// See also:
   ///
   ///  * [innerController], which exposes the [ScrollController] used by the
-  ///    [ScrollView] contained in [NestedScrollView.body].
+  ///    [ScrollView] contained in [MyNestedScrollView.body].
   ScrollController get outerController => _coordinator._outerController;
   late _NestedScrollCoordinator _coordinator;
 
@@ -382,7 +382,7 @@ class NestedScrollViewState extends State<NestedScrollView> {
   }
 
   @override
-  void didUpdateWidget(NestedScrollView oldWidget) {
+  void didUpdateWidget(MyNestedScrollView oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.controller != widget.controller)
       _coordinator.setParent(widget.controller);
@@ -415,12 +415,12 @@ class NestedScrollViewState extends State<NestedScrollView> {
 
   @override
   Widget build(BuildContext context) {
-    return _InheritedNestedScrollView(
+    return _InheritedMyNestedScrollView(
       state: this,
       child: Builder(
         builder: (BuildContext context) {
           _lastHasScrolledBody = _coordinator.hasScrolledBody;
-          return _NestedScrollViewCustomScrollView(
+          return _MyNestedScrollViewCustomScrollView(
             dragStartBehavior: widget.dragStartBehavior,
             scrollDirection: widget.scrollDirection,
             reverse: widget.reverse,
@@ -444,8 +444,8 @@ class NestedScrollViewState extends State<NestedScrollView> {
   }
 }
 
-class _NestedScrollViewCustomScrollView extends CustomScrollView {
-  const _NestedScrollViewCustomScrollView({
+class _MyNestedScrollViewCustomScrollView extends CustomScrollView {
+  const _MyNestedScrollViewCustomScrollView({
     required Axis scrollDirection,
     required bool reverse,
     required ScrollPhysics physics,
@@ -489,17 +489,17 @@ class _NestedScrollViewCustomScrollView extends CustomScrollView {
   }
 }
 
-class _InheritedNestedScrollView extends InheritedWidget {
-  const _InheritedNestedScrollView({
+class _InheritedMyNestedScrollView extends InheritedWidget {
+  const _InheritedMyNestedScrollView({
     Key? key,
     required this.state,
     required Widget child,
   }) : super(key: key, child: child);
 
-  final NestedScrollViewState state;
+  final MyNestedScrollViewState state;
 
   @override
-  bool updateShouldNotify(_InheritedNestedScrollView old) => state != old.state;
+  bool updateShouldNotify(_InheritedMyNestedScrollView old) => state != old.state;
 }
 
 class _NestedScrollMetrics extends FixedScrollMetrics {
@@ -576,11 +576,11 @@ class _NestedScrollCoordinator
     );
   }
 
-  final NestedScrollViewState _state;
-  final NestedScrollViewPinnedHeaderSliverHeightBuilder?
+  final MyNestedScrollViewState _state;
+  final MyNestedScrollViewPinnedHeaderSliverHeightBuilder?
       pinnedHeaderSliverHeightBuilder;
   //get the current active key.
-  final NestedScrollViewInnerScrollPositionKeyBuilder?
+  final MyNestedScrollViewInnerScrollPositionKeyBuilder?
       innerScrollPositionKeyBuilder;
 
   ScrollController? _parent;
@@ -1165,7 +1165,7 @@ class _NestedScrollController extends ScrollController {
   }
 
   Iterable<_NestedScrollPosition> getCurrentNestedPositions(
-      NestedScrollViewInnerScrollPositionKeyBuilder?
+      MyNestedScrollViewInnerScrollPositionKeyBuilder?
           innerScrollPositionKeyBuilder) {
     if (innerScrollPositionKeyBuilder != null &&
         scrollPositionKeyMap.length > 1) {
@@ -1229,7 +1229,7 @@ class _NestedScrollController extends ScrollController {
 }
 
 // The _NestedScrollPosition is used by both the inner and outer viewports of a
-// NestedScrollView. It tracks the offset to use for those viewports, and knows
+// MyNestedScrollView. It tracks the offset to use for those viewports, and knows
 // about the _NestedScrollCoordinator, so that when activities are triggered on
 // this class, they can defer, or be influenced by, the coordinator.
 class _NestedScrollPosition extends ScrollPosition
